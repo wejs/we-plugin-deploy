@@ -1,7 +1,7 @@
 {
   "name": "we-plugin-deploy",
   "description": "We.js deploy and server management",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "dependencies": {
     "async": "^0.9.0",
     "lodash": "^3.5.0"

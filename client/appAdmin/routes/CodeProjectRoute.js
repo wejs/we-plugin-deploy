@@ -15,6 +15,9 @@ App.Router.map(function() {
 
 App.CodeProjectsRoute = Ember.Route.extend({
   model: function () {
+
+    this.loadAllProjectStatus();
+
     return Ember.RSVP.hash({
       data: $.ajax({
         url: '/api/v1/codeproject',
@@ -22,7 +25,38 @@ App.CodeProjectsRoute = Ember.Route.extend({
         return data.codeproject;
       }),
 
+      isLoading: false,
+      projectsStatus: null,
+      isRunningTask: false
     });
+  },
+
+  loadAllProjectStatus: function () {
+    var self = this;
+
+    $.ajax({
+      url: '/api/v1/codeproject-all-project-status',
+      method: 'GET',
+    }).done(function(data) {
+      self.set('currentModel.projectsStatus', data.result);
+      self.set('currentModel.isLoading', false);
+    })
+  },
+
+  actions: {
+    showOperations: function() {
+      this.set('currentModel.isRunningTask', true);
+    },
+    closeOperations: function() {
+      this.set('currentModel.isRunningTask', false);
+    },
+
+    triggetLoadAllProjectStatus: function () {
+      this.set('currentModel.isLoading', true);
+      this.send('showOperations');
+
+      this.loadAllProjectStatus();
+    }
   }
 });
 

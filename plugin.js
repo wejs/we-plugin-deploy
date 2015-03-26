@@ -57,6 +57,12 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       controller: 'codeproject',
       action: 'statusProject',
       responseType  : 'json'
+    },
+
+    'get /api/v1/codeproject-all-project-status': {
+      controller: 'codeproject',
+      action: 'getAllProjectsStatus',
+      responseType  : 'json'
     }
 
   });

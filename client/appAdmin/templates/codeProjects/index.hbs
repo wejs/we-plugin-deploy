@@ -2,6 +2,19 @@
 
 <br>
 
+<div class="all-project-status">
+  {{#if isLoading }}
+    {{we-loading isLoading=isLoading textDone="" textLoading="Loading..."}}
+  {{else}}
+    <pre>{{projectsStatus}}</pre>
+  {{/if}}
+
+  <div>
+  <button {{action 'triggetLoadAllProjectStatus'}} class="btn btn-default btn-sm">reload status</button>
+  </div>
+</div>
+
+<br>
 <table class="table table-striped table-bordered">
   <thead>
     <tr>

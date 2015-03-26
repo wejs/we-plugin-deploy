@@ -110,7 +110,23 @@ module.exports = {
 
     var project = we.config.deploy.projects[projectName];
 
-    var command = 'pm2 show ' + project.pm2Name;
+    var command = 'pm2 status ' + project.pm2Name;
+
+    exec(command, function(error, stdout, stderr) {
+      if (error) we.log.error(stderr);
+
+      res.send({
+        result: stdout,
+        stderr: stderr,
+        error: error
+      })
+    });
+  },
+
+  getAllProjectsStatus: function getAllProjectsStatus(req, res) {
+    var we = req.getWe();
+
+    var command = 'pm2 status ';
 
     exec(command, function(error, stdout, stderr) {
       if (error) we.log.error(stderr);
