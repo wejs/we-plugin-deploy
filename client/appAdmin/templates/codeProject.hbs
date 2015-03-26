@@ -1,0 +1,28 @@
+{{#with data.codeproject}}
+
+<h1>{{name}}</h1>
+
+<p>{{{description}}}</p>
+
+<p>
+  <button {{action 'statusProject' name}} class="btn btn-success">Status</button>
+  <button {{action 'getProjectLogs' name}} class="btn btn-info">Logs</button>
+  <button {{action 'restartProject' name}} class="btn btn-default">Restart</button>
+  <button {{action 'updateProject' name}} class="btn btn-default">Update</button>
+
+  <button {{action 'rollbackProject' name}} class="btn btn-default">Rollback</button>
+</p>
+
+{{/with}}
+
+<br>
+
+{{#if isRunningTask}}
+  <p class="operation-running">
+    {{#if isLoading }}
+      {{we-loading isLoading=isLoading textDone="" textLoading="Loading..."}}
+    {{else}}
+      <pre>{{resultData}}</pre>
+    {{/if}}
+  </p>
+{{/if}}
