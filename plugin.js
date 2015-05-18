@@ -53,6 +53,12 @@ module.exports = function loadPlugin(projectPath, Plugin) {
       responseType  : 'json'
     },
 
+    'get /api/v1/codeproject/:name/npm/outdated': {
+      controller: 'codeproject',
+      action: 'projectNpmOutdated',
+      responseType  : 'json'
+    },
+
     'get /api/v1/codeproject/:name/status': {
       controller: 'codeproject',
       action: 'statusProject',
@@ -66,6 +72,8 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     }
 
   });
+
+  plugin.events.on('we:after:load:socket.io', require('./lib/we-after-load-socket.io'));
 
   return plugin;
 };

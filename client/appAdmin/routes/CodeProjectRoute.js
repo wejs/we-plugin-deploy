@@ -128,6 +128,22 @@ App.CodeProjectRoute = Ember.Route.extend({
       })
     },
 
+
+    projectNpmOutdated: function(name) {
+      var self = this;
+
+      this.set('currentModel.isLoading', true);
+      this.send('showOperations');
+
+      $.ajax({
+        url: '/api/v1/codeproject/' + name + '/npm/outdated',
+        method: 'get',
+      }).done(function(data) {
+        self.set('currentModel.resultData', data.result);
+        self.set('currentModel.isLoading', false);
+      })
+    },
+
    statusProject: function(name) {
       var self = this;
 

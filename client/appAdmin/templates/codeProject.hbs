@@ -7,10 +7,13 @@
 <p>
   <button {{action 'statusProject' name}} class="btn btn-success">Status</button>
   <button {{action 'getProjectLogs' name}} class="btn btn-info">Logs</button>
+
+  <button {{action 'projectNpmOutdated' name}} class="btn btn-default">npm outdated</button>
+
   <button {{action 'restartProject' name}} class="btn btn-default">Restart</button>
   <button {{action 'updateProject' name}} class="btn btn-default">Update</button>
 
-  <button {{action 'rollbackProject' name}} class="btn btn-default">Rollback</button>
+  {{!-- <button {{action 'rollbackProject' name}} class="btn btn-default">Rollback</button> --}}
 </p>
 
 {{/with}}

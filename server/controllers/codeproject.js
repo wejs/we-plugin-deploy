@@ -43,10 +43,14 @@ module.exports = {
 
     var command = 'pm2 logs ' + project.pm2Name;
 
-    exec(command,{
+    exec(command, {
       timeout: 1200
     }, function(error, stdout, stderr) {
-      if (error) we.log.error(stderr);
+      if (error) {
+        if (error.code != 143) {
+          we.log.error(error, stderr);
+        }
+      }
 
       res.send({
         result: stdout,
@@ -102,6 +106,28 @@ module.exports = {
     });
   },
 
+  projectNpmOutdated: function projectNpmOutdated(req, res) {
+    var we = req.getWe();
+
+    var projectName = req.params.name;
+
+    var project = we.config.deploy.projects[projectName];
+
+    var command = 'cd ' + project.folder;
+    // restart process
+    command += ' && npm outdated;';
+
+    exec(command, function(error, stdout, stderr) {
+      if (error) we.log.error(stderr);
+
+      res.send({
+        result: stdout,
+        stderr: stderr,
+        error: error
+      })
+    });
+  },
+
 
   statusProject: function statusProject(req, res) {
     var we = req.getWe();
@@ -113,7 +139,7 @@ module.exports = {
     var command = 'pm2 status ' + project.pm2Name;
 
     exec(command, function(error, stdout, stderr) {
-      if (error) we.log.error(stderr);
+      if (error) we.log.error(error, stderr);
 
       res.send({
         result: stdout,
