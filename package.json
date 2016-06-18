@@ -1,7 +1,7 @@
 {
   "name": "we-plugin-deploy",
   "description": "We.js deploy and server management",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "dependencies": {
     "async": "^0.9.0",
     "lodash": "^3.5.0"
@@ -15,10 +15,7 @@
     "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage",
     "prepublish": "npm prune"
   },
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org"
-  },
-  "author": "Alberto Souza <alberto.souza.dev@gmail.com>",
+  "author": "Alberto Souza <contact@albertosouza.net>",
   "license": "ISC",
   "devDependencies": {
     "mocha": "^1.18.2",
@@ -26,8 +23,5 @@
     "jshint": "^2.5.0",
     "jscs": "^1.4.5"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:wejs/we-plugin-deploy.git"
-  }
+  "repository": "wejs/we-plugin-deploy"
 }
